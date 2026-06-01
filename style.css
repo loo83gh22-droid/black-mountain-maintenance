@@ -601,6 +601,28 @@ img {
   letter-spacing: 0.05em;
 }
 
+.testimonials-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.testimonials-fb-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+
+.testimonials-fb-link:hover {
+  color: var(--gold);
+}
+
 /* =====================
    CONTACT
    ===================== */
