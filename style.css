@@ -686,6 +686,18 @@ img {
   color: var(--gold);
 }
 
+.footer-social {
+  display: flex;
+  align-items: center;
+  opacity: 0.6;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.footer-social:hover {
+  opacity: 1;
+  color: var(--gold);
+}
+
 /* =====================
    ANIMATIONS
    ===================== */
