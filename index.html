@@ -288,34 +288,48 @@
       <div class="section-header center">
         <span class="section-tag">Get In Touch</span>
         <h2 class="section-title">LET'S TALK</h2>
-        <p class="contact-sub">Ready for a free quote? Reach out by phone or email — we respond fast.</p>
+        <p class="contact-sub">Want a free quote? Send a quick note and Rob will come walk your property within the week.</p>
       </div>
-      <div class="contact-grid">
-        <a href="tel:7809724848" class="contact-card">
+      <div class="contact-layout">
+        <a href="tel:7809724848" class="contact-card contact-card--phone">
           <div class="contact-icon">
             <svg viewBox="0 0 48 48" fill="none">
               <path d="M10 8H18L22 18L17 21C19.276 25.822 22.178 28.724 27 31L30 26L40 30V38C40 38 37 44 30 42C16 38 10 22 10 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="contact-info">
-            <span class="contact-label">Call Us</span>
+            <span class="contact-label">Prefer to call?</span>
             <span class="contact-value">780-972-4848</span>
           </div>
           <div class="contact-arrow">→</div>
         </a>
-        <a href="mailto:rob@blackmountainmaintenance.ca" class="contact-card">
-          <div class="contact-icon">
-            <svg viewBox="0 0 48 48" fill="none">
-              <rect x="6" y="12" width="36" height="26" rx="2" stroke="currentColor" stroke-width="2"/>
-              <path d="M6 14L24 27L42 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="New quote request — Black Mountain Maintenance" />
+          <input type="hidden" name="redirect" value="false" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" required />
+            </div>
           </div>
-          <div class="contact-info">
-            <span class="contact-label">Email Us</span>
-            <span class="contact-value">rob@blackmountainmaintenance.ca</span>
+          <div class="form-group">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone" placeholder="250-555-0100" />
           </div>
-          <div class="contact-arrow">→</div>
-        </a>
+          <div class="form-group">
+            <label for="message">What do you need?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your property and what you're looking for..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">Send Message</button>
+          <div class="form-success" id="form-success">
+            <span>✓</span> Thanks — Rob will be in touch within 24 hours.
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -338,5 +352,32 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('.form-submit');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          const data = await res.json();
+          if (data.success) {
+            form.reset();
+            success.style.display = 'flex';
+            btn.style.display = 'none';
+          } else {
+            btn.textContent = 'Send Message';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
