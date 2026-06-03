@@ -134,24 +134,26 @@ img {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
+  background-image:
     radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201, 162, 86, 0.07) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 100% 100%, rgba(201, 162, 86, 0.04) 0%, transparent 50%);
+    linear-gradient(100deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.82) 42%, rgba(8, 8, 8, 0.5) 100%),
+    url("og-image.jpg");
+  background-size: cover, cover, cover;
+  background-position: center, center, center right;
+  background-repeat: no-repeat;
 }
 
-/* Mountain silhouette background */
+/* Bottom fade so hero blends into the page below the photo */
 .hero::before {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 55%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 400' preserveAspectRatio='none'%3E%3Cpath d='M0 400 L0 280 L120 180 L240 230 L360 100 L480 160 L580 60 L680 140 L780 30 L880 120 L980 80 L1080 160 L1160 90 L1260 180 L1360 130 L1440 200 L1440 400 Z' fill='rgba(201,162,86,0.04)'/%3E%3Cpath d='M0 400 L0 320 L160 240 L280 280 L420 160 L540 210 L620 120 L720 180 L820 80 L920 150 L1020 110 L1120 190 L1220 140 L1320 210 L1440 170 L1440 400 Z' fill='rgba(255,255,255,0.02)'/%3E%3C/svg%3E");
-  background-size: cover;
-  background-position: bottom;
+  height: 35%;
+  background: linear-gradient(to bottom, transparent 0%, var(--black) 100%);
   pointer-events: none;
-  opacity: 0.8;
+  z-index: 1;
 }
 
 /* Noise texture overlay */
@@ -997,5 +999,57 @@ img {
 
   .contact-value {
     font-size: 16px;
+  }
+}
+
+/* =====================
+   MOBILE STICKY CALL BAR
+   ===================== */
+.mobile-cta-bar {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .mobile-cta-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    gap: 10px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(8, 8, 8, 0.97);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-cta {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 12px;
+  }
+
+  .mobile-cta--call {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+  }
+
+  .mobile-cta--quote {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* keep the footer clear of the fixed bar */
+  .footer {
+    padding-bottom: 96px;
   }
 }
