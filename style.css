@@ -693,13 +693,63 @@ img {
   gap: 8px;
 }
 
-.form-group label {
+.form-group label,
+.form-group-label {
   font-family: var(--font-display);
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gray);
+}
+
+/* Preferred contact method pills */
+.contact-pref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pref-pill {
+  position: relative;
+  cursor: pointer;
+}
+
+.pref-pill input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pref-pill span {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-light);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  padding: 9px 18px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.pref-pill:hover span {
+  border-color: rgba(201,162,86,0.5);
+  color: var(--white);
+}
+
+.pref-pill input:checked + span {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+.pref-pill input:focus-visible + span {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
 .form-group input,

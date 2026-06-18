@@ -542,8 +542,29 @@
             <input type="tel" id="phone" name="phone" placeholder="250-555-0100" />
           </div>
           <div class="form-group">
+            <span class="form-group-label">Best way to reach you?</span>
+            <div class="contact-pref" role="radiogroup" aria-label="Best way to reach you">
+              <label class="pref-pill">
+                <input type="radio" name="preferred_contact" value="Call" />
+                <span>Call</span>
+              </label>
+              <label class="pref-pill">
+                <input type="radio" name="preferred_contact" value="Text" />
+                <span>Text</span>
+              </label>
+              <label class="pref-pill">
+                <input type="radio" name="preferred_contact" value="Email" />
+                <span>Email</span>
+              </label>
+              <label class="pref-pill">
+                <input type="radio" name="preferred_contact" value="No preference" checked />
+                <span>No preference</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="message">What do you need?</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell me about your property and what you're looking for..." required></textarea>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your property and what you need — and the best time to reach you." required></textarea>
           </div>
           <button type="submit" class="btn-primary form-submit">Send Message</button>
           <div class="form-success" id="form-success">
