@@ -106,6 +106,10 @@ img {
   color: var(--white);
 }
 
+.nav-links a.active:not(.nav-cta) {
+  color: var(--gold);
+}
+
 .nav-cta {
   background: var(--gold) !important;
   color: var(--black) !important;
@@ -878,6 +882,215 @@ img {
 }
 
 /* =====================
+   TRUST STRIP
+   ===================== */
+.trust {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--dark);
+  padding: 40px 0;
+}
+
+.trust-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 8px;
+  position: relative;
+}
+
+.trust-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  right: -16px;
+  width: 1px;
+  background: var(--border);
+}
+
+.trust-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.trust-label {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+/* =====================
+   PROCESS
+   ===================== */
+.process {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.process-step {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 48px 40px;
+  position: relative;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.process-step:hover {
+  border-color: rgba(201, 162, 86, 0.3);
+  transform: translateY(-4px);
+}
+
+.process-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.2;
+  margin-bottom: 24px;
+}
+
+.process-step h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.process-step p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray-light);
+  line-height: 1.7;
+}
+
+.process-cta {
+  text-align: center;
+  margin-top: 56px;
+}
+
+/* =====================
+   FAQ
+   ===================== */
+.faq {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.faq-item[open] {
+  border-color: rgba(201, 162, 86, 0.3);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px 32px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:hover {
+  color: var(--gold);
+}
+
+.faq-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.faq-toggle::before,
+.faq-toggle::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-toggle::before {
+  top: 7px;
+  left: 0;
+  width: 16px;
+  height: 2px;
+}
+
+.faq-toggle::after {
+  top: 0;
+  left: 7px;
+  width: 2px;
+  height: 16px;
+}
+
+.faq-item[open] .faq-toggle::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq-answer {
+  padding: 0 32px 28px;
+}
+
+.faq-answer p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray-light);
+  line-height: 1.75;
+  max-width: 620px;
+}
+
+/* =====================
    ANIMATIONS
    ===================== */
 @keyframes fadeUp {
@@ -898,7 +1111,55 @@ img {
   50% { opacity: 0.4; transform: scaleY(0.6); }
 }
 
-/* Scroll-triggered reveal — disabled, content always visible */
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   ACCESSIBILITY / FOCUS
+   ===================== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-eyebrow,
+  .hero-headline .line,
+  .hero-sub,
+  .hero-actions {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* =====================
    RESPONSIVE
@@ -932,6 +1193,19 @@ img {
     padding: 40px 32px;
   }
 
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .trust-item:nth-child(2)::after {
+    display: none;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
@@ -958,6 +1232,35 @@ img {
 @media (max-width: 600px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .trust-item::after {
+    display: none !important;
+  }
+
+  .trust-item {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .trust-value {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .faq-item summary {
+    font-size: 16px;
+    padding: 22px 24px;
+  }
+
+  .faq-answer {
+    padding: 0 24px 24px;
   }
 
   .form-row {

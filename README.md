@@ -58,9 +58,9 @@ Vercel auto-deploys within ~60 seconds. No other steps needed.
 
 | File | What it does |
 |------|-------------|
-| `index.html` | All page content — hero, services, about, testimonials, contact, footer |
+| `index.html` | All page content — hero, trust strip, services, how-it-works, about, testimonials, FAQ, contact, footer |
 | `style.css` | All styles and responsive layout |
-| `script.js` | Nav scroll effect + contact form AJAX submission |
+| `script.js` | Nav scroll effect, scroll-reveal animations, active-nav highlighting + contact form AJAX submission |
 | `vercel.json` | Vercel config (clean URLs, no trailing slashes) |
 | `logo-white.png` | Logo used in nav and footer |
 | `logo-mountain.png` | Mountain-only logo used in About section |
@@ -71,9 +71,12 @@ Vercel auto-deploys within ~60 seconds. No other steps needed.
 / (index.html)
 ├── Nav
 ├── Hero
+├── Trust strip (owner-operated · insured · local · 5-star)
 ├── Services (8 cards, 3-col grid)
+├── How It Works (3-step process)
 ├── About (Rob's story + credentials)
 ├── Testimonials (3 reviews + Facebook link)
+├── FAQ (5-question accordion + FAQPage schema)
 ├── Contact (phone card + Web3Forms contact form)
 └── Footer (logo, copyright, phone, email, Facebook icon)
 ```
