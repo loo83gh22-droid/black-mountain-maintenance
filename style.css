@@ -1044,6 +1044,53 @@ img {
 }
 
 /* =====================
+   AUDIENCES (WHO I LOOK AFTER)
+   ===================== */
+.audiences {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.audiences-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.audience-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 44px 40px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.audience-card:hover {
+  border-color: rgba(201, 162, 86, 0.3);
+  transform: translateY(-4px);
+}
+
+.audience-card .service-icon {
+  margin-bottom: 24px;
+}
+
+.audience-card h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.audience-card p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray-light);
+  line-height: 1.75;
+}
+
+/* =====================
    FAQ
    ===================== */
 .faq {
@@ -1253,6 +1300,10 @@ summary:focus-visible {
   }
 
   .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .audiences-grid {
     grid-template-columns: 1fr;
   }
 
