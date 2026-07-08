@@ -67,3 +67,35 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+// Mobile nav hamburger
+const hamburger = document.getElementById('nav-hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+const mobileNavClose = document.getElementById('mobile-nav-close');
+
+function openMobileNav() {
+  hamburger.classList.add('is-open');
+  mobileNav.classList.add('is-open');
+  mobileNavOverlay.classList.add('is-open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  mobileNav.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNav() {
+  hamburger.classList.remove('is-open');
+  mobileNav.classList.remove('is-open');
+  mobileNavOverlay.classList.remove('is-open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileNav.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+if (hamburger) hamburger.addEventListener('click', openMobileNav);
+if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileNav);
+if (mobileNavOverlay) mobileNavOverlay.addEventListener('click', closeMobileNav);
+
+document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+  link.addEventListener('click', closeMobileNav);
+});
