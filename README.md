@@ -71,7 +71,7 @@ Vercel auto-deploys within ~60 seconds. No other steps needed.
 / (index.html)
 ├── Nav
 ├── Hero
-├── Trust strip (owner-operated · insured · local · 5-star)
+├── Trust strip (owner-operated · reliable · local · 5-star)
 ├── Services (8 cards, 3-col grid)
 ├── How It Works (3-step process)
 ├── About (Rob's story + credentials)
