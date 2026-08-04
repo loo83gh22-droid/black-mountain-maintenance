@@ -341,7 +341,8 @@ img {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Four services sit 2x2; three-up left an orphan on the second row. */
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
 }
 
@@ -1131,7 +1132,8 @@ img {
 
 .audiences-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* Four audiences sit 2x2; three-up left an orphan on the second row. */
+  grid-template-columns: repeat(2, 1fr);
   gap: 2px;
 }
 
