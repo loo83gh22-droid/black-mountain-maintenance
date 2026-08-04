@@ -1707,3 +1707,21 @@ summary:focus-visible {
 .review-prompt-btn {
   display: inline-flex;
 }
+
+/* The star badge doubles as a link through to the Google reviews. */
+.trust-link {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s ease;
+}
+
+.trust-link:hover {
+  opacity: 0.75;
+}
+
+.trust-link:hover .trust-label {
+  text-decoration: underline;
+}
