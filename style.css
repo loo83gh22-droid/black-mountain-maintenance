@@ -1727,3 +1727,93 @@ summary:focus-visible {
 .trust-link:hover .trust-label {
   text-decoration: underline;
 }
+
+/* ---- Recent work (before/after) ---------------------------------------- */
+.work {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.work-context {
+  max-width: 620px;
+  margin: 16px auto 0;
+  color: var(--gray-light);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.work-card {
+  margin: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.work-card:hover {
+  border-color: rgba(201, 162, 86, 0.3);
+}
+
+/* Aspect ratio is fixed so the grid does not jump while the images load. */
+.work-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1100 / 726;
+  object-fit: cover;
+}
+
+.work-caption {
+  padding: 26px 32px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.work-note {
+  color: var(--gray-light);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.work-cta {
+  margin-top: 44px;
+  text-align: center;
+  color: var(--gray-light);
+  font-size: 16px;
+}
+
+.work-cta a {
+  color: var(--gold);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(201, 162, 86, 0.4);
+}
+
+.work-cta a:hover {
+  color: var(--gold-light);
+}
+
+/* Two up once there is room. One per row on phones keeps the before and after
+   halves big enough to actually read. */
+@media (min-width: 900px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .work-card:first-child {
+    grid-column: 1 / -1;
+  }
+}
