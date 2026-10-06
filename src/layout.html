@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}" />
+  <link rel="canonical" href="{{page.canonical}}" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#1a1a1a" />
+
+  <link rel="icon" href="/logo-mountain.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/logo-mountain.png" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{businessName}}" />
+  <meta property="og:title" content="{{page.title}}" />
+  <meta property="og:description" content="{{page.description}}" />
+  <meta property="og:url" content="{{page.canonical}}" />
+  <meta property="og:image" content="{{siteUrl}}/og-image.jpg" />
+  <meta property="og:image:alt" content="Black Mountain Maintenance truck with Black Mountain in the background" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{page.title}}" />
+  <meta name="twitter:description" content="{{page.description}}" />
+  <meta name="twitter:image" content="{{siteUrl}}/og-image.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+{{{schemaJson}}}
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <a href="/" class="nav-logo" aria-label="{{businessName}} home">
+      <img src="/logo-white.png" alt="{{businessName}}" width="1000" height="1000" />
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      {{{navLinks}}}
+    </nav>
+    <a href="{{phoneHref}}" class="nav-phone" aria-label="Call {{phone}}">
+      <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M10 8H18L22 18L17 21C19.276 25.822 22.178 28.724 27 31L30 26L40 30V38C40 38 37 44 30 42C16 38 10 22 10 8Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation">✕</button>
+    <nav class="mobile-nav-links" aria-label="Mobile">
+      <a href="/">Home</a>
+      {{{mobileNavLinks}}}
+    </nav>
+  </div>
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+  <main>
+{{{body}}}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <img src="/logo-white.png" alt="{{businessName}}" class="footer-logo" loading="lazy" width="1000" height="1000" />
+      <p class="footer-copy">© {{year}} {{businessName}}. Kelowna, BC.</p>
+      <div class="footer-links">
+        <a href="{{phoneHref}}">{{phone}}</a>
+        <a href="mailto:{{email}}">{{email}}</a>
+        {{#if facebookUrl}}<a href="{{facebookUrl}}" target="_blank" rel="noopener" class="footer-social" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.883v2.27h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+          </svg>
+        </a>{{/if}}
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY CALL BAR -->
+  <div class="mobile-cta-bar">
+    <a href="{{phoneHref}}" class="mobile-cta mobile-cta--call" aria-label="Call {{businessName}}">
+      <svg width="18" height="18" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M10 8H18L22 18L17 21C19.276 25.822 22.178 28.724 27 31L30 26L40 30V38C40 38 37 44 30 42C16 38 10 22 10 8Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      Call
+    </a>
+    <a href="/contact" class="mobile-cta mobile-cta--quote">Request a Quote</a>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
