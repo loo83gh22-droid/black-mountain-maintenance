@@ -39,23 +39,6 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   });
 }
 
-// Highlight the nav link for the section currently in view
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
-  const navObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  sections.forEach(s => navObserver.observe(s));
-}
-
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
@@ -99,3 +82,64 @@ if (mobileNavOverlay) mobileNavOverlay.addEventListener('click', closeMobileNav)
 document.querySelectorAll('.mobile-nav-links a').forEach(link => {
   link.addEventListener('click', closeMobileNav);
 });
+
+// Quote form: pre-select property type from ?type=, validate, submit to Web3Forms
+const form = document.getElementById('contact-form');
+if (form) {
+  const typeParam = new URLSearchParams(window.location.search).get('type');
+  const typeSelect = form.querySelector('#property_type');
+  if (typeParam && typeSelect) {
+    const match = [...typeSelect.options].find(o => o.value.toLowerCase() === typeParam.toLowerCase());
+    if (match) typeSelect.value = match.value;
+  }
+
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+  const btn = form.querySelector('.form-submit');
+  const btnLabel = btn.textContent;
+
+  function showError(message, field) {
+    error.textContent = message;
+    error.hidden = false;
+    if (field) field.focus();
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    error.hidden = true;
+
+    // Trim, then check required fields and email format before sending
+    form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea')
+      .forEach(el => { el.value = el.value.trim(); });
+    const missing = [...form.querySelectorAll('[required]')].find(el => !el.value);
+    if (missing) {
+      const label = form.querySelector(`label[for="${missing.id}"]`);
+      return showError(`Please fill in ${label ? label.textContent.toLowerCase() : 'all required fields'}.`, missing);
+    }
+    const email = form.querySelector('#email');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+      return showError('Please check your email address.', email);
+    }
+
+    // Web3Forms keeps only one value per field name, so join the checkboxes
+    form.querySelector('#services-summary').value =
+      [...form.querySelectorAll('input[name="service_option"]:checked')].map(el => el.value).join(', ') || 'Not specified';
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const data = new FormData(form);
+      data.delete('service_option');
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      const result = await res.json();
+      if (!result.success) throw new Error(result.message);
+      form.reset();
+      success.style.display = 'flex';
+      btn.style.display = 'none';
+    } catch {
+      btn.textContent = btnLabel;
+      btn.disabled = false;
+      showError('Something went wrong sending that. Please try again, or call us instead.');
+    }
+  });
+}

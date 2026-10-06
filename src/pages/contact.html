@@ -1,0 +1,96 @@
+  <!-- CONTACT / REQUEST A QUOTE -->
+  <section class="contact contact--page" id="contact">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-tag">Request a Quote</span>
+        <h1 class="section-title">LET'S TALK ABOUT YOUR PROPERTY</h1>
+        <p class="contact-sub">Tell us about the property and what you need. We'll get back to you {{quoteReplyTime}}, then walk the site in person before we quote.</p>
+      </div>
+      <div class="contact-layout">
+        <a href="{{phoneHref}}" class="contact-card contact-card--phone">
+          <div class="contact-icon">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <path d="M10 8H18L22 18L17 21C19.276 25.822 22.178 28.724 27 31L30 26L40 30V38C40 38 37 44 30 42C16 38 10 22 10 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Prefer to call?</span>
+            <span class="contact-value">{{phone}}</span>
+          </div>
+          <div class="contact-arrow" aria-hidden="true">→</div>
+        </a>
+
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="{{web3formsKey}}" />
+          <input type="hidden" name="subject" value="New quote request: {{businessName}}" />
+          <input type="hidden" name="from_name" value="{{businessName}} Website" />
+          <input type="hidden" name="services" id="services-summary" value="" />
+          <!-- Honeypot: bots fill this, humans never see it -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none !important;" tabindex="-1" autocomplete="off" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="250-555-0100" />
+            </div>
+            <div class="form-group">
+              <label for="property_type">Property Type</label>
+              <select id="property_type" name="property_type" required>
+                <option value="Residential">Residential</option>
+                <option value="Strata">Strata</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Property Address</label>
+            <input type="text" id="address" name="address" autocomplete="street-address" placeholder="123 Example Road, Kelowna" required />
+          </div>
+
+          <fieldset class="form-group">
+            <legend class="form-group-label">Services Needed</legend>
+            <div class="contact-pref">
+              <label class="pref-pill"><input type="checkbox" name="service_option" value="Weekly maintenance" /><span>Weekly maintenance</span></label>
+              <label class="pref-pill"><input type="checkbox" name="service_option" value="Fall clean-up" /><span>Fall clean-up</span></label>
+              <label class="pref-pill"><input type="checkbox" name="service_option" value="Spring clean-up" /><span>Spring clean-up</span></label>
+              <label class="pref-pill"><input type="checkbox" name="service_option" value="Exterior cleaning" /><span>Exterior cleaning</span></label>
+              <label class="pref-pill"><input type="checkbox" name="service_option" value="Other" /><span>Other</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend class="form-group-label">Best way to reach you?</legend>
+            <div class="contact-pref">
+              <label class="pref-pill"><input type="radio" name="preferred_contact" value="Call" /><span>Call</span></label>
+              <label class="pref-pill"><input type="radio" name="preferred_contact" value="Text" /><span>Text</span></label>
+              <label class="pref-pill"><input type="radio" name="preferred_contact" value="Email" /><span>Email</span></label>
+              <label class="pref-pill"><input type="radio" name="preferred_contact" value="No preference" checked /><span>No preference</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-group">
+            <label for="message">Message (optional)</label>
+            <textarea id="message" name="message" rows="4" placeholder="Anything we should know: size of the property, timing, access, current contractor."></textarea>
+          </div>
+
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+          <button type="submit" class="btn-primary form-submit">Send Request</button>
+          <div class="form-success" id="form-success" role="status">
+            <span aria-hidden="true">✓</span> Thanks, we'll get back to you {{quoteReplyTime}}.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
