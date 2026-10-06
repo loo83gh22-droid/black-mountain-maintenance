@@ -341,8 +341,8 @@ img {
 
 .services-grid {
   display: grid;
-  /* Four services sit 2x2; three-up left an orphan on the second row. */
-  grid-template-columns: repeat(2, 1fr);
+  /* Three services sit three-up (snow paused). With four, switch back to repeat(2, 1fr). */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 
@@ -1364,6 +1364,11 @@ summary:focus-visible {
 
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* An odd last card spans the full row instead of sitting alone. */
+  .service-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
   }
 
   .service-card {
