@@ -44,13 +44,14 @@ cd black-mountain-maintenance
 ```
 
 ### 3. Make changes and deploy
-Edit `index.html` or `style.css`, then:
+The pages are generated. Edit the sources, rebuild, then push:
 ```bash
+node build.js
 git add .
 git commit -m "describe your change"
 git push origin master
 ```
-Vercel auto-deploys within ~60 seconds. No other steps needed.
+Vercel auto-deploys within ~60 seconds. Never edit the generated `.html` files directly; `node build.js` overwrites them.
 
 ---
 
@@ -58,28 +59,27 @@ Vercel auto-deploys within ~60 seconds. No other steps needed.
 
 | File | What it does |
 |------|-------------|
-| `index.html` | All page content — hero, trust strip, services, how-it-works, about, testimonials, FAQ, contact, footer |
+| `site.config.js` | **Business facts**: phone, email, service areas, reply time, seasonal note, credential flags, capability PDF. Credential lines only show when their flag is `true`; empty links are hidden. |
+| `src/layout.html` | Shared head, nav, footer and mobile call bar |
+| `src/pages/*.html` | Page content: home, strata, residential, about, service-area, contact |
+| `src/partials/cta-band.html` | Closing "Now booking" band reused on several pages |
+| `src/data/reviews.json` | Approved review snippets. Empty list hides the reviews section. |
+| `build.js` | Generates the six `.html` pages, `sitemap.xml` and `robots.txt` from the above. No dependencies. |
 | `style.css` | All styles and responsive layout |
-| `script.js` | Nav scroll effect, scroll-reveal animations, active-nav highlighting + contact form AJAX submission |
-| `vercel.json` | Vercel config (clean URLs, no trailing slashes) |
-| `logo-white.png` | Logo used in nav and footer |
-| `logo-mountain.png` | Mountain-only logo used in About section |
+| `script.js` | Nav, scroll reveal, mobile menu, quote form (pre-selects `?type=`, validates, sends via Web3Forms) |
+| `vercel.json` | Clean URLs (`/strata-property-managers` serves `strata-property-managers.html`) |
+| `.vercelignore` | Keeps `src/`, `build.js` and the config off the public site |
 
 ## Site Structure
 
-```
-/ (index.html)
-├── Nav
-├── Hero
-├── Trust strip (owner-operated · reliable · local · 5-star)
-├── Services (8 cards, 3-col grid)
-├── How It Works (3-step process)
-├── About (Rob's story + credentials)
-├── Testimonials (3 reviews + Facebook link)
-├── FAQ (5-question accordion + FAQPage schema)
-├── Contact (phone card + Web3Forms contact form)
-└── Footer (logo, copyright, phone, email, Facebook icon)
-```
+| Route | Page |
+|---|---|
+| `/` | Home: hero, trust strip, services preview, how it works, before & after, reviews, CTA |
+| `/strata-property-managers` | Strata & Property Managers (main revenue page) |
+| `/residential` | Residential services + seasonal note |
+| `/about` | About |
+| `/service-area` | Service area list from config |
+| `/contact` | Request a Quote form (`?type=strata`, `residential` or `commercial` pre-selects property type) |
 
 ## Deployment Pipeline
 
@@ -106,4 +106,4 @@ Back this file up to Google Drive or email it to yourself — it is not stored i
 
 - **Phone:** 780-972-4848
 - **Email:** rob@blackmountainmaintenance.ca
-- **Location:** Kelowna, BC (Black Mountain)
+- **Location:** Kelowna, BC
