@@ -12,6 +12,7 @@ module.exports = {
   email: "rob@blackmountainmaintenance.ca",
   siteUrl: "https://www.blackmountainmaintenance.ca",
   googleReviewUrl: "https://g.page/r/CY1GS3N-7jVCEBM/review",
+  facebookReviewUrl: "https://www.facebook.com/BlackMountainMaintenance/reviews",
   googleProfileUrl: "https://g.page/r/CY1GS3N-7jVCEBQ",
   facebookUrl: "https://www.facebook.com/profile.php?id=61589719342274",
 

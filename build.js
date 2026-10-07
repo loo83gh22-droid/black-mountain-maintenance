@@ -48,6 +48,13 @@ const PAGES = [
     title: 'Request a Quote | Black Mountain Maintenance',
     description: 'Request a free grounds maintenance quote for your Kelowna strata, commercial property or home. We reply within one business day.',
   },
+  {
+    // Landing page for review requests (QR code, text message). Not in the nav
+    // or sitemap, and kept out of search results.
+    src: 'review.html', out: 'review.html', route: '/review', hidden: true, robots: 'noindex, follow',
+    title: 'Leave a Review | Black Mountain Maintenance',
+    description: 'Thanks for choosing Black Mountain Maintenance. Leave a quick review on Google or Facebook.',
+  },
 ];
 
 const NAV = PAGES.filter(p => p.nav);
@@ -160,7 +167,7 @@ const base = {
 for (const page of PAGES) {
   const ctx = {
     ...base,
-    page: { ...page, canonical: config.siteUrl + (page.route === '/' ? '/' : page.route) },
+    page: { robots: 'index, follow', ...page, canonical: config.siteUrl + (page.route === '/' ? '/' : page.route) },
     navLinks: navHtml(page, false),
     mobileNavLinks: navHtml(page, true),
   };
@@ -174,7 +181,7 @@ for (const page of PAGES) {
 const today = new Date().toISOString().slice(0, 10);
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
   '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-  PAGES.map(p => `  <url><loc>${config.siteUrl}${p.route === '/' ? '/' : p.route}</loc><lastmod>${today}</lastmod></url>`).join('\n') +
+  PAGES.filter(p => !p.hidden).map(p => `  <url><loc>${config.siteUrl}${p.route === '/' ? '/' : p.route}</loc><lastmod>${today}</lastmod></url>`).join('\n') +
   '\n</urlset>\n');
 fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}/sitemap.xml\n`);
 console.log('built sitemap.xml, robots.txt');
