@@ -29,8 +29,8 @@ module.exports = {
 
   // Shown on the Residential page. Change it with the season.
   seasonalNote: {
-    title: "Fall clean-ups are booking now",
-    text: "Leaves cleared, beds and perennials cut back, gutters emptied and everything hauled away. Spots fill up quickly once the leaves start dropping.",
+    title: "Winter driveway clearing is booking now",
+    text: "Driveways and sidewalks cleared all winter for one seasonal price, not a charge every time it snows. Cleared by hand, so exposed aggregate and stamped concrete come through the winter unmarked. Spots are limited and they go early.",
   },
 
   credentials: {

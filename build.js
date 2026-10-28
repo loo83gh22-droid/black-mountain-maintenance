@@ -30,8 +30,8 @@ const PAGES = [
   },
   {
     src: 'residential.html', out: 'residential.html', route: '/residential', nav: 'Residential',
-    title: 'Lawn Care & Fall Clean-Ups Kelowna | Black Mountain Maintenance',
-    description: 'Weekly lawn care, spring and fall clean-ups, shrub cutbacks, bed refreshes and exterior cleaning for Kelowna homes. Free quotes from the owner.',
+    title: 'Lawn Care & Snow Removal Kelowna | Black Mountain Maintenance',
+    description: 'Weekly lawn care, spring and fall clean-ups, and winter driveway and sidewalk clearing for Kelowna homes. One seasonal price for the winter. Free quotes from the owner.',
   },
   {
     src: 'about.html', out: 'about.html', route: '/about', nav: 'About',
