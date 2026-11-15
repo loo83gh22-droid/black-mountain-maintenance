@@ -1804,6 +1804,145 @@ summary:focus-visible {
 }
 
 /* =====================
+   PROJECTS
+   The one-off builds, as opposed to the week to week maintenance above.
+   Each .project is a hero shot, a stepped write-up, then detail shots.
+   ===================== */
+.projects {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.project-list {
+  margin-top: 56px;
+  display: grid;
+  gap: 64px;
+}
+
+.project {
+  display: grid;
+  gap: 2px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.project:hover {
+  border-color: rgba(201, 162, 86, 0.3);
+}
+
+.project figure {
+  margin: 0;
+}
+
+.project img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-hero img {
+  aspect-ratio: 4 / 3;
+}
+
+.project-details img {
+  aspect-ratio: 3 / 4;
+}
+
+.project-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.project-body {
+  padding: 36px 32px 40px;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.project-lead {
+  margin-top: 14px;
+  color: var(--gray-light);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.project-steps {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 24px;
+}
+
+.project-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.project-step-num {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  padding-top: 2px;
+}
+
+.project-step h4 {
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+.project-step p {
+  margin-top: 6px;
+  color: var(--gray-light);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.project-footnote {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--gray-light);
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Side by side once there is room: imagery left, the write-up right. */
+@media (min-width: 900px) {
+  .project {
+    grid-template-columns: 1.15fr 1fr;
+    grid-template-rows: auto auto;
+  }
+  .project-hero {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .project-details {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .project-body {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    padding: 44px 40px;
+    align-self: start;
+  }
+}
+
+/* =====================
    INNER PAGES
    ===================== */
 .hero-headline--long {
