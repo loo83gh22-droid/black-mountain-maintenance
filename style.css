@@ -593,6 +593,23 @@ img {
   margin-bottom: 24px;
 }
 
+.about-figure {
+  margin: 0;
+}
+
+.about-figure figcaption {
+  margin-top: 14px;
+  color: var(--gray-light);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cta-band-reply {
+  margin-top: 14px;
+  color: var(--gray-light);
+  font-size: 15px;
+}
+
 .cta-band-lede {
   font-size: 17px;
   font-weight: 300;

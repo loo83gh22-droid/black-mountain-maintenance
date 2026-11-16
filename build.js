@@ -19,9 +19,11 @@ const SRC = path.join(ROOT, 'src');
 
 const PAGES = [
   {
+    // Carries the search terms /residential used to hold, now that the home
+    // page is the only page a homeowner lands on.
     src: 'home.html', out: 'index.html', route: '/',
-    title: 'Grounds Maintenance Kelowna | Black Mountain Maintenance',
-    description: 'Owner-led grounds maintenance for Kelowna strata communities and homeowners. Quiet battery-powered equipment and one point of contact. Request a quote.',
+    title: 'Kelowna Lawn Care, Clean-Ups & Snow | Black Mountain Maintenance',
+    description: 'Owner-operated lawn care, seasonal clean-ups, landscape upgrades and winter clearing in Black Mountain, Rutland and Kelowna. I quote the work and I do the work.',
   },
   // /residential and /about were removed 2026-11-16. The home page now tells
   // the whole story in order (who I am, what I do, how it went, the pictures),
@@ -141,7 +143,20 @@ const schema = {
   telephone: '+1-' + config.phone,
   email: config.email,
   founder: config.ownerName,
-  description: 'Owner-led grounds maintenance for strata communities, commercial properties and homes in Kelowna, BC, using quiet battery-powered equipment.',
+  description: 'Owner-operated lawn care, garden maintenance, seasonal clean-ups, winter clearing and landscape upgrades in Kelowna, BC. The owner quotes every property and does the work.',
+  // Named services so search engines can match the specific thing someone
+  // typed, rather than guessing from the page copy.
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Services',
+    itemListElement: [
+      'Lawn and garden maintenance',
+      'Seasonal clean-ups',
+      'Exterior cleaning and pressure washing',
+      'Winter driveway and sidewalk clearing',
+      'Landscape upgrades, decorative rock and small builds',
+    ].map(s => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s } })),
+  },
   address: { '@type': 'PostalAddress', addressLocality: 'Kelowna', addressRegion: 'BC', addressCountry: 'CA' },
   areaServed: config.serviceAreas.map(a => ({ '@type': 'Place', name: `${a}, Kelowna, BC` })),
   sameAs: [config.facebookUrl].filter(Boolean),

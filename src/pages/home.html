@@ -58,7 +58,16 @@
         </ul>
       </div>
       <div class="about-visual">
-        <img class="about-photo" src="/og-image.jpg" alt="Rob Thompson with the Black Mountain Maintenance truck" width="1200" height="630" loading="lazy" decoding="async" />
+        <!-- Deliberately NOT the truck portrait from the hero. The same photo
+             twice on one page is a wasted slot, and on a page that sells on
+             pictures the work is the better answer to "who is this". -->
+        <figure class="about-figure">
+          <picture>
+            <source srcset="/work/who-1.webp" type="image/webp">
+            <img class="about-photo" src="/work/who-1.jpg" alt="A finished front garden: a curved crushed rock bed with ornamental grasses and a crabapple tree, edged cleanly against the lawn beside a paver driveway" width="1200" height="900" loading="lazy" decoding="async" />
+          </picture>
+          <figcaption>Four days at a Kelowna property. Beds stripped back, fabric laid, twelve yards of rock in by barrow.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
