@@ -23,25 +23,22 @@ const PAGES = [
     title: 'Grounds Maintenance Kelowna | Black Mountain Maintenance',
     description: 'Owner-led grounds maintenance for Kelowna strata communities and homeowners. Quiet battery-powered equipment and one point of contact. Request a quote.',
   },
-  {
-    src: 'strata.html', out: 'strata-property-managers.html', route: '/strata-property-managers', nav: 'Strata & Property Managers',
-    title: 'Strata Landscaping & Grounds Maintenance Kelowna | Black Mountain Maintenance',
-    description: 'Seasonal and multi-year grounds maintenance for Kelowna stratas and property managers. Photo updates, a direct line to the owner, quiet equipment.',
-  },
-  {
-    src: 'residential.html', out: 'residential.html', route: '/residential', nav: 'Residential',
-    title: 'Lawn Care & Snow Removal Kelowna | Black Mountain Maintenance',
-    description: 'Weekly lawn care, spring and fall clean-ups, and winter driveway and sidewalk clearing for Kelowna homes. One seasonal price for the winter. Free quotes from the owner.',
-  },
-  {
-    src: 'about.html', out: 'about.html', route: '/about', nav: 'About',
-    title: 'About Black Mountain Maintenance | Kelowna',
-    description: 'Black Mountain Maintenance is an owner-led Kelowna grounds maintenance company, built on years of commercial grounds and account management experience.',
-  },
+  // /residential and /about were removed 2026-11-16. The home page now tells
+  // the whole story in order (who I am, what I do, how it went, the pictures),
+  // so both had become near-duplicates of it, competing with it in search.
+  // Old URLs redirect from vercel.json.
   {
     src: 'service-area.html', out: 'service-area.html', route: '/service-area', nav: 'Service Area',
     title: 'Service Area | Black Mountain Maintenance, Kelowna',
     description: 'Black Mountain Maintenance serves Black Mountain, Kirschner Mountain, Kettle Valley, Rutland, Glenmore and Joe Rich in Kelowna, BC.',
+  },
+  // Kept because it is a procurement page, not an audience page: contract
+  // options, communication, paperwork. None of that belongs on the home page,
+  // and it ranks for "strata landscaping Kelowna".
+  {
+    src: 'strata.html', out: 'strata-property-managers.html', route: '/strata-property-managers', nav: 'For Strata',
+    title: 'Strata Landscaping & Grounds Maintenance Kelowna | Black Mountain Maintenance',
+    description: 'Seasonal and multi-year grounds maintenance for Kelowna stratas and property managers. Photo updates, a direct line to the owner, quiet equipment.',
   },
   {
     src: 'contact.html', out: 'contact.html', route: '/contact', nav: 'Request a Quote',
