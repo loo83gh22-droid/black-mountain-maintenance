@@ -43,7 +43,7 @@ const PAGES = [
   {
     src: 'contact.html', out: 'contact.html', route: '/contact', nav: 'Request a Quote',
     title: 'Request a Quote | Black Mountain Maintenance',
-    description: 'Request a free grounds maintenance quote for your Kelowna strata, commercial property or home. We reply within one business day.',
+    description: 'Request a free grounds maintenance quote for your Kelowna strata, commercial property or home. I reply within one business day.',
   },
   {
     // Landing page for review requests (QR code, text message). Not in the nav
@@ -117,8 +117,10 @@ const credentialLines = [
 const credentialsItems = credentialLines
   .map(t => `<li><span class="check">✓</span> ${escapeHtml(t)}</li>`).join('\n          ');
 
+// The service areas read as a run of names, not a grid of tiles. Six big
+// boxes carried six words and nothing else.
 const serviceAreasItems = config.serviceAreas
-  .map(a => `<li>${escapeHtml(a)}</li>`).join('\n          ');
+  .map(a => `<span class="area-chip">${escapeHtml(a)}</span>`).join('\n        ');
 
 function navHtml(page, mobile) {
   return NAV.map(p => {

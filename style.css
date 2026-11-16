@@ -345,6 +345,18 @@ img {
   gap: 2px;
 }
 
+/* Five cards in a three-column grid would leave a hole in the second row.
+   The last card fills it instead, which also gives Upgrades the room it
+   deserves: it is the only service that is not maintenance. */
+/* Only while the grid really has three columns. Left unscoped, this forces a
+   second implicit column into the single-column phone layout and squashes
+   every card. */
+@media (min-width: 901px) {
+  .services-grid > .service-card:last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
+}
+
 .service-card {
   background: var(--card);
   padding: 44px 40px;
@@ -1322,6 +1334,7 @@ summary:focus-visible {
    RESPONSIVE
    ===================== */
 @media (max-width: 900px) {
+
   .nav {
     padding: 18px 24px;
   }
@@ -2108,22 +2121,108 @@ summary:focus-visible {
   margin-top: 20px;
 }
 
-.area-list {
-  list-style: none;
+/* =====================
+   STRAIGHT ANSWERS
+   The questions every visitor has and no competitor answers.
+   ===================== */
+.answers {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+
+.answers-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.answer {
+  padding: 40px;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.answer h3 {
+  font-family: var(--font-display);
+  font-size: 21px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.answer p {
+  margin-top: 14px;
+  color: var(--gray-light);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* The reply promise under the hero buttons. */
+.hero-promise {
+  margin-top: 22px;
+  color: var(--gray-light);
+  font-size: 15px;
+}
+
+.hero-promise a {
+  color: var(--gold);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(201, 162, 86, 0.4);
+  white-space: nowrap;
+}
+
+.hero-promise a:hover {
+  color: var(--gold-light);
+}
+
+/* The places, as a run of names rather than six large empty tiles. */
+.area-run {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.area-chip {
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+/* Why the list is short, which is the part worth reading. */
+.area-why {
+  margin-top: 56px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 
-.area-list li {
-  padding: 28px 32px;
+.area-why-item {
+  padding: 36px 32px;
   background: var(--card);
   border: 1px solid var(--border);
+}
+
+.area-why-item h3 {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-size: 20px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  color: var(--white);
+}
+
+.area-why-item p {
+  margin-top: 12px;
+  color: var(--gray-light);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .area-note {
@@ -2175,6 +2274,10 @@ fieldset.form-group legend {
 }
 
 @media (max-width: 900px) {
+  .answers-grid {
+    grid-template-columns: 1fr;
+  }
+
   .page-hero {
     padding: 140px 0 72px;
   }
@@ -2187,9 +2290,12 @@ fieldset.form-group legend {
     display: none;
   }
 
-  .check-grid,
-  .area-list {
+  .check-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .area-why {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -2209,13 +2315,11 @@ fieldset.form-group legend {
   }
 
   .services-grid--2,
-  .check-grid,
-  .area-list {
+  .check-grid {
     grid-template-columns: 1fr;
   }
 
-  .check-grid li,
-  .area-list li {
+  .check-grid li {
     padding: 20px 22px;
   }
 
