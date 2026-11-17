@@ -29,11 +29,9 @@ const PAGES = [
   // the whole story in order (who I am, what I do, how it went, the pictures),
   // so both had become near-duplicates of it, competing with it in search.
   // Old URLs redirect from vercel.json.
-  {
-    src: 'service-area.html', out: 'service-area.html', route: '/service-area', nav: 'Service Area',
-    title: 'Service Area | Black Mountain Maintenance, Kelowna',
-    description: 'Black Mountain Maintenance serves Black Mountain, Kirschner Mountain, Kettle Valley, Rutland, Glenmore and Joe Rich in Kelowna, BC.',
-  },
+  // /service-area was removed 2026-11-16. Once the neighbourhood names came
+  // off it there was no page left, only a heading. The names now sit in the
+  // footer of every page, and areaServed in the schema below still lists them.
   // Kept because it is a procurement page, not an audience page: contract
   // options, communication, paperwork. None of that belongs on the home page,
   // and it ranks for "strata landscaping Kelowna".
@@ -170,7 +168,6 @@ const base = {
   phoneHref: 'tel:' + config.phone.replace(/\D/g, ''),
   year: new Date().getFullYear(),
   serviceAreasText: listText(config.serviceAreas),
-  serviceAreasItems,
   reviewsHtml,
   hasReviews: reviews.length > 0,
   credentialsItems,

@@ -11,6 +11,11 @@
       "source": "/about",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/service-area",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

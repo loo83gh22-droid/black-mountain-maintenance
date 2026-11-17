@@ -986,6 +986,13 @@ img {
   opacity: 0.7;
 }
 
+.footer-areas {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
 .footer-copy {
   font-size: 13px;
   color: var(--gray);
@@ -2193,59 +2200,13 @@ summary:focus-visible {
   color: var(--gold-light);
 }
 
-/* The places, as a run of names rather than six large empty tiles. */
-.area-run {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 
-.area-chip {
-  padding: 10px 18px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--card);
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--white);
-}
 
 /* Why the list is short, which is the part worth reading. */
-.area-why {
-  margin-top: 56px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
 
-.area-why-item {
-  padding: 36px 32px;
-  background: var(--card);
-  border: 1px solid var(--border);
-}
 
-.area-why-item h3 {
-  font-family: var(--font-display);
-  font-size: 20px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--white);
-}
 
-.area-why-item p {
-  margin-top: 12px;
-  color: var(--gray-light);
-  font-size: 15px;
-  line-height: 1.65;
-}
 
-.area-note {
-  margin-top: 32px;
-  color: var(--gray-light);
-}
 
 /* Contact page */
 .contact--page {
@@ -2311,9 +2272,6 @@ fieldset.form-group legend {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .area-why {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 600px) {
