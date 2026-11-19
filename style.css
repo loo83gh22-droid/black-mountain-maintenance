@@ -1893,6 +1893,58 @@ summary:focus-visible {
   gap: 2px;
 }
 
+/* Captions on the detail shots. Added once the grid carried a BEFORE frame
+   alongside the finished ones: without a label the before shot just reads as
+   a worse photo of the same job. */
+.project-details figure {
+  position: relative;
+}
+
+.project-details figcaption,
+.project-wide figcaption {
+  padding: 10px 14px 14px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.shot-tag {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+}
+
+.shot-tag--before {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* The closing wide shot sits outside the project card, full width. */
+.project-wide {
+  margin: 32px 0 0;
+}
+
+.project-wide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+.project-wide figcaption {
+  text-align: center;
+  padding-top: 12px;
+}
+
 .project-body {
   padding: 36px 32px 40px;
 }
@@ -1963,17 +2015,29 @@ summary:focus-visible {
     grid-template-columns: 1.15fr 1fr;
     grid-template-rows: auto auto;
   }
+  /* The hero fills its column. With the detail row moved out from under it,
+     a fixed 4/3 hero left a block of dead black beside the write-up. */
   .project-hero {
     grid-column: 1;
     grid-row: 1;
+    height: 100%;
   }
+  .project-hero img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+  /* The detail shots run the full width under the hero and the write-up.
+     They used to sit in the left column only, which was fine with two of
+     them and left a tall empty gap beside the text once there were four. */
   .project-details {
-    grid-column: 1;
+    grid-column: 1 / -1;
     grid-row: 2;
+    grid-template-columns: repeat(4, 1fr);
   }
   .project-body {
     grid-column: 2;
-    grid-row: 1 / -1;
+    grid-row: 1;
     padding: 44px 40px;
     align-self: start;
   }
