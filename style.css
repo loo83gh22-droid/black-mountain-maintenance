@@ -2033,7 +2033,7 @@ summary:focus-visible {
   .project-details {
     grid-column: 1 / -1;
     grid-row: 2;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .project-body {
     grid-column: 2;
