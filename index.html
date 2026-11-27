@@ -367,13 +367,17 @@
   </section>
 
 
-  <!-- REVIEWS: edit src/data/reviews.json -->
+  <!-- REVIEWS: edit src/data/reviews.json. Only five-star entries are built in
+       (build.js filters on rating). Every one of them is in the HTML so the
+       text is indexable; CSS shows the first three and the script below
+       shuffles the order on each load, so a repeat visitor sees a different
+       three. Nothing is fetched from Google at run time. -->
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="section-header center">
         <h2 class="section-title">WHAT CLIENTS SAY</h2>
       </div>
-      <div class="testimonials-grid">
+      <div class="testimonials-grid" id="testimonials-grid">
 
         <div class="testimonial-card reveal">
           <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
@@ -401,7 +405,55 @@
             <span class="testimonial-location">Fort McMurray, AB</span>
           </div>
         </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"Definitely a five star review. He is an excellent communicator, knows exactly what to do, trustworthy, and his services are exceptional. I needed a long overdue yard clean up and garbage haul, I couldn't get through it also I know I needed a maintenance professional, for my own sanity. My friend recommended Rob at Black Mountain Maintenance and he got the job done. Thank YOU Rob!"</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Melissa Johnson</span>
+            <span class="testimonial-location">Kelowna, BC &middot; Google review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"I was very impressed with Rob's work in our yard. Everything was neat and tidy when he finished. I will definitely be using his services in the future!"</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Elizabeth Henly</span>
+            <span class="testimonial-location">Kelowna, BC &middot; Google review</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+          <blockquote class="testimonial-quote">"Rob from Black Mountain Maintenance did a great job cutting down growth on our back slope."</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Gregg Gallo</span>
+            <span class="testimonial-location">Kelowna, BC &middot; Google review</span>
+          </div>
+        </div>
       </div>
+      <script>
+        /* Fisher-Yates on the cards already in the DOM. Runs before paint
+           because the script sits directly after the grid, so there is no
+           visible reshuffle. Wrapped in try/catch: if anything here throws,
+           the first three cards show and the page is still correct. */
+        (function () {
+          try {
+            var g = document.getElementById('testimonials-grid');
+            if (!g) return;
+            var cards = Array.prototype.slice.call(g.children);
+            if (cards.length < 4) return;
+            for (var i = cards.length - 1; i > 0; i--) {
+              var j = Math.floor(Math.random() * (i + 1));
+              var t = cards[i]; cards[i] = cards[j]; cards[j] = t;
+            }
+            var frag = document.createDocumentFragment();
+            cards.forEach(function (c) { frag.appendChild(c); });
+            g.appendChild(frag);
+          } catch (e) { /* leave the original order */ }
+        })();
+      </script>
       <div class="review-prompt reveal">
         <div class="review-prompt-stars" aria-hidden="true">★★★★★</div>
         <p>Worked with me? I would love to hear how it went.</p>

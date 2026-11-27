@@ -96,7 +96,12 @@ function render(tpl, ctx, file) {
 const listText = items => items.length < 2 ? items.join('')
   : items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
 
-const reviews = JSON.parse(fs.readFileSync(path.join(SRC, 'data', 'reviews.json'), 'utf8'));
+// Only five-star reviews go on the site. Every one of them is rendered into
+// the HTML so the text is indexable, then CSS shows the first three and a few
+// lines of inline script shuffle the order on load. Nothing is fetched at run
+// time: no API, no key, no extra request, and it still works with JS off.
+const reviews = JSON.parse(fs.readFileSync(path.join(SRC, 'data', 'reviews.json'), 'utf8'))
+  .filter(r => (r.rating ?? 5) === 5);
 const reviewsHtml = reviews.map(r => `
         <div class="testimonial-card reveal">
           <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>

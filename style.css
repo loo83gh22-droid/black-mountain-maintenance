@@ -640,6 +640,23 @@ img {
   gap: 2px;
 }
 
+/* Every five-star review is in the HTML so the text is indexable, but only
+   three are shown. Hiding the rest in CSS rather than JS means there is no
+   flash of six cards before three. The inline script in home.html shuffles
+   the DOM order on load, so which three appear changes per visit. With JS
+   off you simply get the first three. */
+.testimonials-grid > .testimonial-card:nth-child(n + 4) {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  /* One column on a phone, so three stacked cards is already a lot of
+     scrolling. Show two. */
+  .testimonials-grid > .testimonial-card:nth-child(n + 3) {
+    display: none;
+  }
+}
+
 .testimonial-card {
   background: var(--card);
   padding: 44px 40px;

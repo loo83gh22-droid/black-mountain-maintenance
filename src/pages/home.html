@@ -205,15 +205,40 @@
   </section>
 
 {{#if hasReviews}}
-  <!-- REVIEWS: edit src/data/reviews.json -->
+  <!-- REVIEWS: edit src/data/reviews.json. Only five-star entries are built in
+       (build.js filters on rating). Every one of them is in the HTML so the
+       text is indexable; CSS shows the first three and the script below
+       shuffles the order on each load, so a repeat visitor sees a different
+       three. Nothing is fetched from Google at run time. -->
   <section class="testimonials" id="testimonials">
     <div class="container">
       <div class="section-header center">
         <h2 class="section-title">WHAT CLIENTS SAY</h2>
       </div>
-      <div class="testimonials-grid">
+      <div class="testimonials-grid" id="testimonials-grid">
 {{{reviewsHtml}}}
       </div>
+      <script>
+        /* Fisher-Yates on the cards already in the DOM. Runs before paint
+           because the script sits directly after the grid, so there is no
+           visible reshuffle. Wrapped in try/catch: if anything here throws,
+           the first three cards show and the page is still correct. */
+        (function () {
+          try {
+            var g = document.getElementById('testimonials-grid');
+            if (!g) return;
+            var cards = Array.prototype.slice.call(g.children);
+            if (cards.length < 4) return;
+            for (var i = cards.length - 1; i > 0; i--) {
+              var j = Math.floor(Math.random() * (i + 1));
+              var t = cards[i]; cards[i] = cards[j]; cards[j] = t;
+            }
+            var frag = document.createDocumentFragment();
+            cards.forEach(function (c) { frag.appendChild(c); });
+            g.appendChild(frag);
+          } catch (e) { /* leave the original order */ }
+        })();
+      </script>
       {{#if googleReviewUrl}}<div class="review-prompt reveal">
         <div class="review-prompt-stars" aria-hidden="true">★★★★★</div>
         <p>Worked with me? I would love to hear how it went.</p>
